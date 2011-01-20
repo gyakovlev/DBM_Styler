@@ -1,0 +1,12 @@
+## Interface: 40000
+## Title: |cffffd200DBM|r Styler
+## Notes: DBM Styler
+## Author: Affli @ Howling Fjord (RU)
+## Version 1.0
+## X-Website: http://github.com/Affli/DBM_Styler
+## RequiredDeps: DBM-Core
+## SavedVariables: DBM_StylerDB
+
+DBM_Styler.lua
+styles.xml
+init.lua
