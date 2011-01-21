@@ -4,9 +4,8 @@ local addon, ns = ...
 local SkinBars=ns.dummy
 local SkinBoss=ns.dummy
 local SkinRange=ns.dummy
-local f=CreateFrame"Frame"
-f:RegisterEvent"VARIABLES_LOADED"
-f:SetScript("OnEvent", function(self, event, addon)
+
+local ApplyStyle=function()
 	-- lookup style functions from namespace
 	if ns.SkinBars and type(ns.SkinBars)=="function" then
 		SkinBars=ns.SkinBars
@@ -19,6 +18,13 @@ f:SetScript("OnEvent", function(self, event, addon)
 	DBM.RangeCheck:Show()
 	DBM.RangeCheck:Hide()
 	DBMRangeCheck:HookScript("OnShow",SkinRange)
+	
+	ns.print("loaded "..DBM_StylerDB.style)
+end
+
+local f=CreateFrame"Frame"
+f:RegisterEvent"VARIABLES_LOADED"
+f:SetScript("OnEvent", function(self) ApplyStyle()
 	self:UnregisterEvent"VARIABLES_LOADED"
 end)
 

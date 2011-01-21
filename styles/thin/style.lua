@@ -2,14 +2,14 @@
 -- init style
 local addon, ns = ...
 -- name style
-local name="thin"
+local style="thin"
 table.insert(ns.styles, name)
 -- make shure vars are available.
 local f=CreateFrame"Frame"
 f:RegisterEvent"VARIABLES_LOADED"
 f:SetScript("OnEvent", function()
 -- if not me when die
-if not (DBM_StylerDB.style == name) then return end
+if not (DBM_StylerDB.style == style) then return end
 ----------------------
 
 -- skin specific code
@@ -35,7 +35,7 @@ end
 -- this will inject our code to all dbm bars.
 function ns.SkinBars(self)
 	for bar in self:GetBarIterator() do
-		if not bar.injected then
+		if not (bar.injected==style) then
 				bar.ApplyStyle=function()
 				local frame = bar.frame
 				local tbar = _G[frame:GetName().."Bar"]
@@ -78,46 +78,46 @@ function ns.SkinBars(self)
 				if bar.enlarged then tbar:SetWidth(scale(bar.owner.options.HugeWidth)) else tbar:SetWidth(scale(bar.owner.options.Width)) end
 
 				frame:SetScale(1)
-				if not frame.styled then
+				if not (frame.style==style) then
 					frame:SetHeight(buttonsize/3)
 					SetTemplate(frame)
-					frame.styled=true
+					frame.style=name
 				end
 
-				if not spark.killed then
+				if not (spark.style==style) then
 					spark:SetAlpha(0)
 					spark:SetTexture(nil)
-					spark.killed=true
+					spark.style=name
 				end
 	
-				if not icon1.styled then
+				if not (icon1.style==style) then
 					icon1:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 					icon1:ClearAllPoints()
 					icon1:SetPoint("TOPLEFT", icon1.overlay, scale(2), scale(-2))
 					icon1:SetPoint("BOTTOMRIGHT", icon1.overlay, scale(-2), scale(2))
-					icon1.styled=true
+					icon1.style=name
 				end
 				
-				if not icon2.styled then
+				if not (icon2.style==style) then
 					icon2:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 					icon2:ClearAllPoints()
 					icon2:SetPoint("TOPLEFT", icon2.overlay, scale(2), scale(-2))
 					icon2:SetPoint("BOTTOMRIGHT", icon2.overlay, scale(-2), scale(2))
-					icon2.styled=true
+					icon2.style=name
 				end
 
-				if not texture.styled then
+				if not (texture.style==style) then
 					texture:SetTexture(texture)
-					texture.styled=true
+					texture.style=name
 				end
 
-				if not tbar.styled then
+				if not (tbar.style==style) then
 					tbar:SetPoint("TOPLEFT", frame, "TOPLEFT", scale(2), scale(-2))
 					tbar:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", scale(-2), scale(2))
-					tbar.styled=true
+					tbar.style=name
 				end
 
-				if not name.styled then
+				if not (name.style==style) then
 					name:ClearAllPoints()
 					name:SetPoint("BOTTOMLEFT", frame, "TOPLEFT", 0, scale(4))
 					name:SetWidth(165)
@@ -126,17 +126,17 @@ function ns.SkinBars(self)
 					name:SetJustifyH("LEFT")
 					name:SetShadowColor(0, 0, 0, 0)
 					name.SetFont = ns.dummy
-					name.styled=true
+					name.style=style
 				end
 				
-				if not timer.styled then	
+				if not (timer.style==style) then	
 					timer:ClearAllPoints()
 					timer:SetPoint("BOTTOMRIGHT", frame, "TOPRIGHT", scale(-1), scale(2))
 					timer:SetFont(font, 12, "OUTLINE")
 					timer:SetJustifyH("RIGHT")
 					timer:SetShadowColor(0, 0, 0, 0)
 					timer.SetFont = ns.dummy
-					timer.styled=true
+					timer.style=name
 				end
 
 				if bar.owner.options.IconLeft then icon1:Show() icon1.overlay:Show() else icon1:Hide() icon1.overlay:Hide() end
@@ -146,7 +146,7 @@ function ns.SkinBars(self)
 				texture:SetAlpha(1)
 				frame:Show()
 				bar:Update(0)
-				bar.injected=true
+				bar.injected=style
 			end
 			bar:ApplyStyle()
 		end
