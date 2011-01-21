@@ -5,7 +5,7 @@
 ## Version 1.0
 ## X-Website: http://github.com/Affli/DBM_Styler
 ## RequiredDeps: DBM-Core
-## SavedVariables: DBM_StylerDB
+## SavedVariablesPerCharacter: DBM_StylerDB
 
 DBM_Styler.lua
 styles.xml
