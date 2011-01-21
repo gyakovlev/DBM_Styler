@@ -3,7 +3,7 @@
 local addon, ns = ...
 -- name style
 local style="thin"
-table.insert(ns.styles, name)
+table.insert(ns.styles, style)
 -- make shure vars are available.
 local f=CreateFrame"Frame"
 f:RegisterEvent"VARIABLES_LOADED"
@@ -81,13 +81,13 @@ function ns.SkinBars(self)
 				if not (frame.style==style) then
 					frame:SetHeight(buttonsize/3)
 					SetTemplate(frame)
-					frame.style=name
+					frame.style=style
 				end
 
 				if not (spark.style==style) then
 					spark:SetAlpha(0)
 					spark:SetTexture(nil)
-					spark.style=name
+					spark.style=style
 				end
 	
 				if not (icon1.style==style) then
@@ -95,7 +95,7 @@ function ns.SkinBars(self)
 					icon1:ClearAllPoints()
 					icon1:SetPoint("TOPLEFT", icon1.overlay, scale(2), scale(-2))
 					icon1:SetPoint("BOTTOMRIGHT", icon1.overlay, scale(-2), scale(2))
-					icon1.style=name
+					icon1.style=style
 				end
 				
 				if not (icon2.style==style) then
@@ -103,18 +103,18 @@ function ns.SkinBars(self)
 					icon2:ClearAllPoints()
 					icon2:SetPoint("TOPLEFT", icon2.overlay, scale(2), scale(-2))
 					icon2:SetPoint("BOTTOMRIGHT", icon2.overlay, scale(-2), scale(2))
-					icon2.style=name
+					icon2.style=style
 				end
 
 				if not (texture.style==style) then
 					texture:SetTexture(texture)
-					texture.style=name
+					texture.style=style
 				end
 
 				if not (tbar.style==style) then
 					tbar:SetPoint("TOPLEFT", frame, "TOPLEFT", scale(2), scale(-2))
 					tbar:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", scale(-2), scale(2))
-					tbar.style=name
+					tbar.style=style
 				end
 
 				if not (name.style==style) then
@@ -136,7 +136,7 @@ function ns.SkinBars(self)
 					timer:SetJustifyH("RIGHT")
 					timer:SetShadowColor(0, 0, 0, 0)
 					timer.SetFont = ns.dummy
-					timer.style=name
+					timer.style=style
 				end
 
 				if bar.owner.options.IconLeft then icon1:Show() icon1.overlay:Show() else icon1:Hide() icon1.overlay:Hide() end

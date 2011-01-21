@@ -25,13 +25,8 @@ cfg.default=function()
 	ns.print("loaded default settings")
 end
 	
-if not DropDownMenuTest then
-	cfg.style=CreateFrame("Button", "$parent_SelectStyle", cfg, "UIDropDownMenuTemplate")
-end
- 
-cfg.style:ClearAllPoints()
+cfg.style=CreateFrame("Button", "$parent_SelectStyle", cfg, "UIDropDownMenuTemplate")
 cfg.style:SetPoint("TOPRIGHT", 0, -10)
-cfg.style:Show()
   
 local function OnClick(self)
    UIDropDownMenu_SetSelectedID(cfg.style, self:GetID())
