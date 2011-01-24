@@ -17,7 +17,7 @@ local mult = 768/string.match(GetCVar("gxResolution"), "%d+x(%d+)")/GetCVar("uiS
 local function scale(x) return mult*math.floor(x+.5) end
 local buttonsize=scale(30)
 local font="Interface\\Addons\\DBM_Styler\\styles\\thin\\font.ttf"
-local texture="Interface\\Addons\\DBM_Styler\\styles\\thin\\normTex.tga"
+local tex=[[Interface\Addons\DBM_Styler\styles\thin\normTex]]
 local backdrop={
 		bgFile = "Interface\\Buttons\\WHITE8x8",
 		edgeFile = "Interface\\Buttons\\WHITE8x8",
@@ -53,6 +53,7 @@ function ns.SkinBars(self)
 					icon1.overlay:SetWidth(buttonsize)
 					icon1.overlay:SetHeight(buttonsize)
 					icon1.overlay:SetFrameStrata("BACKGROUND")
+				--	icon1.overlay:SetFrameLevel(frame:GetFrameLevel()+1)
 					icon1.overlay:SetPoint("BOTTOMRIGHT", tbar, "BOTTOMLEFT", -buttonsize/4, scale(-2))
 					SetTemplate(icon1.overlay)					
 				end
@@ -64,6 +65,7 @@ function ns.SkinBars(self)
 					icon2.overlay:SetWidth(buttonsize)
 					icon2.overlay:SetHeight(buttonsize)
 					icon2.overlay:SetFrameStrata("BACKGROUND")
+				--	icon2.overlay:SetFrameLevel(frame:GetFrameLevel()+1)
 					icon2.overlay:SetPoint("BOTTOMLEFT", tbar, "BOTTOMRIGHT", buttonsize/4, scale(-2))
 					SetTemplate(icon2.overlay)
 				end
@@ -78,6 +80,7 @@ function ns.SkinBars(self)
 				if bar.enlarged then tbar:SetWidth(scale(bar.owner.options.HugeWidth)) else tbar:SetWidth(scale(bar.owner.options.Width)) end
 
 				frame:SetScale(1)
+			--	frame:SetFrameLevel(100)
 				if not (frame.style==style) then
 					frame:SetHeight(buttonsize/3)
 					SetTemplate(frame)
@@ -106,14 +109,20 @@ function ns.SkinBars(self)
 					icon2.style=style
 				end
 
-				if not (texture.style==style) then
-					texture:SetTexture(texture)
-					texture.style=style
-				end
+			--	if not (texture.style==style) then
+			--		texture:SetTexture(texture)
+			--		texture.style=style
+			--	end
+
+			--	texture:SetTexture(bar.owner.options.Texture)
+				texture:SetTexture(tex)
 
 				if not (tbar.style==style) then
+					tbar:ClearAllPoints()
 					tbar:SetPoint("TOPLEFT", frame, "TOPLEFT", scale(2), scale(-2))
 					tbar:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", scale(-2), scale(2))
+				--	tbar:SetFrameLevel(120)
+				--	tbar:SetFrameStrata("LOW")
 					tbar.style=style
 				end
 
